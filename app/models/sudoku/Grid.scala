@@ -71,7 +71,11 @@ class Grid(val name: String, val cells: IndexedSeq[Choices], val iteration: Int 
     }
   }
 
-  override def toString = name + ", iteration: " + iteration + ", cells: " + cells
+  override def toString =
+    name +
+    ", solved: " + isSolved +
+    ", iteration: " + iteration +
+    ", cells: " + cells
 
   def updated(x: Int, y: Int, newChoices: Choices): Grid =
     new Grid(name, cells.updated(offset(x, y), newChoices), iteration + 1)
