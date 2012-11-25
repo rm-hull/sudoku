@@ -80,7 +80,10 @@ class Grid(val name: String, val cells: IndexedSeq[Choices], val iteration: Int 
     ", cells: " + cells
 
   def updated(x: Int, y: Int, newChoices: Choices): Grid =
-    new Grid(name, cells.updated(offset(x, y), newChoices), iteration + 1)
+    updated(offset(x, y), newChoices)
+
+  def updated(offset: Int, newChoices: Choices): Grid =
+    updated(cells.updated(offset, newChoices))
 
   def updated(newCells: IndexedSeq[Choices]): Grid =
     new Grid(name, newCells, iteration + 1)
