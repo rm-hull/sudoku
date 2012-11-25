@@ -1,4 +1,8 @@
-========================
+sudoku
+======
+
+A Scala / Play 2.0 sudoku solver for deployment on Heroku
+
 HOW TO USE THIS TEMPLATE
 ========================
 
@@ -10,7 +14,6 @@ HOW TO USE THIS TEMPLATE
 
 * execute `sbt` and then 'run' to run the built-in development server
 
-* onece the development server is running, documentation is available at http://localhost:9000/@documentation
-
+* once the development server is running, documentation is available at http://localhost:9000/@documentation
 
 
