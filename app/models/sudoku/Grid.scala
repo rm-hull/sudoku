@@ -7,6 +7,8 @@ object Grid {
 
   type Choices = Set[Int]
 
+  val empty = new Grid("Empty", Vector.empty)
+
   def apply(filename: String): Grid =
     apply(fromFile(filename).getLines.toList)
 
@@ -73,5 +75,8 @@ class Grid(val name: String, val cells: IndexedSeq[Choices], val iteration: Int 
 
   def updated(x: Int, y: Int, newChoices: Choices): Grid =
     new Grid(name, cells.updated(offset(x, y), newChoices), iteration + 1)
+
+  def updated(newCells: IndexedSeq[Choices]): Grid =
+    new Grid(name, newCells, iteration + 1)
 }
 
