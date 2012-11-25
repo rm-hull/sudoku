@@ -52,12 +52,14 @@ class Grid(val name: String, val cells: IndexedSeq[Choices], val iteration: Int 
   def column(x: Int): IndexedSeq[Choices] =
     cells.drop(x).sliding(1, 9).map(_(0)).toIndexedSeq
 
-  def box(x: Int, y: Int): IndexedSeq[Choices] =
+  def box(x: Int, y: Int): IndexedSeq[Choices] = {
+    def norm(a: Int): Int = 3 * (a / 3)
     Range
       .inclusive(0, 2)
-      .map(i => offset(x, y + i))
+      .map(i => offset(norm(x), norm(y) + i))
       .map(i => slice(i, 3))
       .reduce(_ ++ _)
+  }
 
   def box(offset: Int): IndexedSeq[Choices] =
     box(3 * (offset / 3), 3 * (offset % 3))
