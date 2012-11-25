@@ -36,10 +36,7 @@ object Grid {
   }
 }
 
-
 class Grid(val name: String, val cells: IndexedSeq[Choices], val iteration: Int = 0) {
-
-  private def ??? = throw new Error("Not yet implemented")
 
   def cell(offset: Int): Choices = cells(offset)
 
@@ -48,8 +45,7 @@ class Grid(val name: String, val cells: IndexedSeq[Choices], val iteration: Int 
   def slice(offset: Int, size: Int): IndexedSeq[Choices] =
     cells.slice(offset, offset + size)
 
-  def row(y: Int): IndexedSeq[Choices] =
-    cells.slice(offset(0, y), 9)
+  def row(y: Int): IndexedSeq[Choices] = slice(offset(0, y), 9)
 
   def column(x: Int): IndexedSeq[Choices] =
     cells.drop(x).sliding(1, 9).map(_(0)).toIndexedSeq
