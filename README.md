@@ -1,7 +1,13 @@
 sudoku
 ======
 
-A Scala / Play 2.0 sudoku solver for deployment on Heroku
+A Scala / Play 2.0 sudoku solver for deployment on Heroku. Initially 
+written to compare and contrast an identically implemented Clojure solver, 
+whose source can be found here: 
+[https://github.com/rm-hull/project-euler/blob/master/src/euler096.clj]
+(https://github.com/rm-hull/project-euler/blob/master/src/euler096.clj),
+but mainly to play with Play.
+
 
 How to build & deploy
 =====================
