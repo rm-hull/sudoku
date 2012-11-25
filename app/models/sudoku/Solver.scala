@@ -87,12 +87,6 @@ object SimpleSolver extends Solver {
   }
 }
 
-/**
- * Performs a depth-first search of all the possible grids, returned as a
- * lazy sequence. It is up to the consumer of the sequence to terminate
- * iterating over the sequence on receipt of a completed solution. Note
- * that this is different to the simple solver implementation.
- */
 object WhatIfSolver extends Solver {
 
   /**
@@ -102,14 +96,19 @@ object WhatIfSolver extends Solver {
   private def firstChoice(grid: Grid): Option[(Choices, Int)] =
     grid.cells.zipWithIndex.find { case(choice, idx) => choice.size > 1 }
 
-  def nextGenerations(grid: Grid): Set[Grid] = firstChoice(grid) match {
+  private def nextGenerations(grid: Grid): Set[Grid] = firstChoice(grid) match {
     case None => Set.empty
     case Some((choices, idx)) => for {
       poss <- choices
     } yield SimpleSolver.solve(grid.updated(idx, Set(poss)))
   }
 
-  def from(initial: Stream[Grid]): Stream[Grid] = initial match {
+  /**
+   * Performs a depth-first search of all the possible grids, returned
+   * as a stream. It is up to the consumer of the stream to terminate
+   * iterating over the sequence on receipt of a completed solution.
+   */
+   private def from(initial: Stream[Grid]): Stream[Grid] = initial match {
     case Stream() => Stream.empty
     case x #:: xs => x #:: from(nextGenerations(x).toStream append xs)
   }
