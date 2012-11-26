@@ -75,7 +75,7 @@ object SimpleSolver extends Solver {
     grid.updated(cells)
   }
 
-  private def compose[T](f: T => T, g: T => T) = { x: T => f(g(x)) }
+  private def compose[T](f: T => T, g: T => T) = { x: T => g(f(x)) }
 
   def solve(grid: Grid): Grid = {
     val f = compose(reducer(singleCandidate)(_:Grid), reducer(hiddenSingle)(_:Grid))
