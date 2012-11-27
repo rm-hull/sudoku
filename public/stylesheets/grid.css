@@ -1,0 +1,25 @@
+.grid table {
+	border-width: 1px;
+	border-spacing: 0px;
+	border-style: solid;
+	border-color: black;
+	border-collapse: collapse;
+	background-color: white;
+}
+.grid table th {
+	border-width: 1px;
+	padding: 0px;
+	border-style: inset;
+	border-color: gray;
+	background-color: white;
+}
+.box table td {
+	border-width: 1px;
+	padding: 6px;
+	border-style: inset;
+	border-color: gray;
+	background-color: white;
+}
+.box table td:hover {
+    background-color: #FAF0E6;
+}
