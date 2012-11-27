@@ -1,7 +1,53 @@
 @(message: String)
 
+@box(grid: Seq[Int]) = {
+    <div class="box">
+        <table>
+            @for(rows <- grid.sliding(3,3)) {
+            <tr>
+                @for(cell <- rows) {
+                <td>@cell</td>
+                }
+            </tr>
+            }
+        </table>
+    </div>
+}
+
 @main("Welcome to Play 2.0") {
     
-    @welcome(message)
-    
+<section id="top">
+    <div class="wrapper">
+        <h1>Sudoku solver</h1>
+    </div>
+</section>
+
+<div class="wrapper">
+    <div class="grid">
+        <table>
+            <tr>
+                <td>@box(Range(1,10).sortBy(x => math.random))</td>
+                <td>@box(Range(1,10).sortBy(x => math.random))</td>
+                <td>@box(Range(1,10).sortBy(x => math.random))</td>
+            </tr>
+            <tr>
+                <td>@box(Range(1,10).sortBy(x => math.random))</td>
+                <td>@box(Range(1,10).sortBy(x => math.random))</td>
+                <td>@box(Range(1,10).sortBy(x => math.random))</td>
+            </tr>
+            <tr>
+                <td>@box(Range(1,10).sortBy(x => math.random))</td>
+                <td>@box(Range(1,10).sortBy(x => math.random))</td>
+                <td>@box(Range(1,10).sortBy(x => math.random))</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="control-strip">
+        <input type="submit" value="Solve"/>
+        <input type="submit" value="Clear"/>
+    </div>
+
+</div>
+
 }
