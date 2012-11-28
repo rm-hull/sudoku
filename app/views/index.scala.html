@@ -23,7 +23,34 @@
 </section>
 
 <div class="wrapper">
-    <div class="grid">
+
+    <div id="input-pad">
+        <table>
+            <tr>
+                <th colspan="3" ontouchstart="">Cancel</th>
+            </tr>
+            <tr>
+                <td ontouchstart="">9</td>
+                <td ontouchstart="">8</td>
+                <td ontouchstart="">7</td>
+            </tr>
+            <tr>
+                <td ontouchstart="">6</td>
+                <td ontouchstart="">5</td>
+                <td ontouchstart="">4</td>
+            </tr>
+            <tr>
+                <td ontouchstart="">3</td>
+                <td ontouchstart="">2</td>
+                <td ontouchstart="">1</td>
+            </tr>
+            <tr>
+                <td colspan="3" ontouchstart="">Clear</td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="grid">
         <table>
             <tr>
                 <td>@box(Range(1,10).sortBy(x => math.random))</td>
@@ -41,37 +68,11 @@
                 <td>@box(Range(1,10).sortBy(x => math.random))</td>
             </tr>
         </table>
-    </div>
-
-    <div class="control-strip">
-        <input type="submit" value="Solve"/>
-        <input type="submit" value="Clear"/>
-    </div>
-
-    <div class="input-pad">
-        <table>
-            <tr>
-                <th colspan="3">&raquo;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&laquo;</th>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>8</td>
-                <td>7</td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>5</td>
-                <td>4</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>2</td>
-                <td>1</td>
-            </tr>
-            <tr>
-                <td colspan="3">Clear</td>
-            </tr>
-        </table>
+      
+        <div class="control-strip">
+            <input id="solve-button" type="submit" value="Solve"/>
+            <input id="clear-button" type="submit" value="Clear"/>
+        </div>
     </div>
 </div>
 
