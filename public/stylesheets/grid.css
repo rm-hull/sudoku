@@ -6,20 +6,56 @@
 	border-collapse: collapse;
 	background-color: white;
 }
-.grid table th {
-	border-width: 1px;
-	padding: 0px;
-	border-style: inset;
-	border-color: gray;
-	background-color: white;
-}
 .box table td {
 	border-width: 1px;
 	padding: 6px;
-	border-style: inset;
+	border-style: solid;
 	border-color: gray;
 	background-color: white;
 }
 .box table td:hover {
     background-color: #FAF0E6;
+}
+div.input-pad {
+    display: inline;
+    position: absolute;
+    top: 225px;
+    left: 253px;
+    padding: 4px;
+}
+.input-pad table {
+	border-width: 1px;
+	border-spacing: 0px;
+	border-style: solid;
+	border-color: white;
+	border-collapse: collapse;
+	background-color: white;
+}
+.input-pad table th {
+	border-width: 0px;
+	padding: 8px;
+	border-style: solid;
+	background-color: #FAF0E6;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    text-align: center;
+}
+.input-pad table td {
+    font-weight: bold;
+	border-width: 2px;
+	padding: 10px;
+	border-style: solid;
+	border-color: white;
+	background-color: gray;
+	color: white;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    text-align: center;
+}
+.input-pad table td:active {
+    color: gray;
+    background-color: black;
+    cursor: pointer;
 }
