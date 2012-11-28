@@ -17,7 +17,7 @@ How to build & deploy
 
 * execute `sbt` and then `compile` to build the project
 
-* execute `sbt` and then 'run' to run the built-in development server
+* execute `sbt` and then `run` to run the built-in development server
 
 * once the development server is running, documentation is available at http://localhost:9000/@documentation
 
