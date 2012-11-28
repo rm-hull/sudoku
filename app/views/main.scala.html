@@ -9,11 +9,14 @@
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/grid.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="@routes.Assets.at("javascripts/grid.js")"></script>
+        <meta name="viewport" content="width=600; user-scalable=0;">
     </head>
     <body>
         @content
         <div class="footer wrapper">
             Built with Scala 2.9.1 and Play @play.core.PlayVersion.current, deployed on Heroku. 
+            <br/>
             Source code available here: <a href="https://github.com/rm-hull/sudoku">https://github.com/rm-hull/sudoku</a>
         </div>
     </body>
