@@ -1,12 +1,12 @@
 @(message: String)
 
-@box(grid: Seq[Int]) = {
+@box(grid: Seq[Int] = List(0,0,0,0,0,0,0,0,0)) = {
     <div class="box">
         <table>
             @for(rows <- grid.sliding(3,3)) {
             <tr>
                 @for(cell <- rows) {
-                <td>@cell</td>
+                <td>@(if (cell == 0) " " else cell.toString)</td>
                 }
             </tr>
             }
@@ -14,7 +14,17 @@
     </div>
 }
 
-@main("Welcome to Play 2.0") {
+@spinner(styleClass: String) = {
+    <div id="spinner" class="@styleClass">
+        <div class="spinner">
+            @for(i <- 1 to 12) {
+            <div class="bar@i"></div>
+            }
+        </div>
+    </div>
+}
+
+@main("Konnichiwa") {
     
 <section id="top">
     <div class="wrapper">
@@ -22,58 +32,72 @@
     </div>
 </section>
 
-<div class="wrapper">
+<section id="main">
+    <div class="wrapper">
 
-    <div id="input-pad">
-        <table>
-            <tr>
-                <th colspan="3" ontouchstart="">Cancel</th>
-            </tr>
-            <tr>
-                <td ontouchstart="">7</td>
-                <td ontouchstart="">8</td>
-                <td ontouchstart="">9</td>
-            </tr>
-            <tr>
-                <td ontouchstart="">4</td>
-                <td ontouchstart="">5</td>
-                <td ontouchstart="">6</td>
-            </tr>
-            <tr>
-                <td ontouchstart="">1</td>
-                <td ontouchstart="">2</td>
-                <td ontouchstart="">3</td>
-            </tr>
-            <tr>
-                <td colspan="3" ontouchstart="">Clear</td>
-            </tr>
-        </table>
-    </div>
+ 
+        <div id="grid">
+        <div id="input-pad">
+            <table>
+                <tr>
+                    <th colspan="3" ontouchstart="">Cancel</th>
+                </tr>
+                <tr>
+                    <td ontouchstart="">7</td>
+                    <td ontouchstart="">8</td>
+                    <td ontouchstart="">9</td>
+                </tr>
+                <tr>
+                    <td ontouchstart="">4</td>
+                    <td ontouchstart="">5</td>
+                    <td ontouchstart="">6</td>
+                </tr>
+                <tr>
+                    <td ontouchstart="">1</td>
+                    <td ontouchstart="">2</td>
+                    <td ontouchstart="">3</td>
+                </tr>
+                <tr>
+                    <td colspan="3" ontouchstart="">Clear</td>
+                </tr>
+            </table>
+        </div>
 
-    <div id="grid">
-        <table>
-            <tr>
-                <td>@box(Range(1,10).sortBy(x => math.random))</td>
-                <td>@box(Range(1,10).sortBy(x => math.random))</td>
-                <td>@box(Range(1,10).sortBy(x => math.random))</td>
-            </tr>
-            <tr>
-                <td>@box(Range(1,10).sortBy(x => math.random))</td>
-                <td>@box(Range(1,10).sortBy(x => math.random))</td>
-                <td>@box(Range(1,10).sortBy(x => math.random))</td>
-            </tr>
-            <tr>
-                <td>@box(Range(1,10).sortBy(x => math.random))</td>
-                <td>@box(Range(1,10).sortBy(x => math.random))</td>
-                <td>@box(Range(1,10).sortBy(x => math.random))</td>
-            </tr>
-        </table>
-      
-        <div class="control-strip">
-            <input id="solve-button" type="submit" value="Solve"/>
-            <input id="clear-button" type="submit" value="Clear"/>
+            @spinner("container grey")
+            <div>
+                <table>
+                    <tr>
+                        <td>@box()</td>
+                        <td>@box()</td>
+                        <td>@box()</td>
+                    </tr>
+                    <tr>
+                        <td>@box()</td>
+                        <td>@box()</td>
+                        <td>@box()</td>
+                    </tr>
+                    <tr>
+                        <td>@box()</td>
+                        <td>@box()</td>
+                        <td>@box()</td>
+                    </tr>
+                </table>
+            </div>
+            
+          
+            <div class="control-strip">
+                <input id="solve-button" type="submit" value="Solve"/>
+                <input id="clear-button" type="submit" value="Clear"/>
+            </div>
         </div>
     </div>
-</div>
 
+    <div class="footer wrapper">
+        <div class="bubble">
+            Built with Scala 2.9.1 and Play @play.core.PlayVersion.current, deployed on Heroku. 
+            <br/>
+            Source code available here: <a href="https://github.com/rm-hull/sudoku">https://github.com/rm-hull/sudoku</a>
+        </div>
+    </div>
+<section>
 }
