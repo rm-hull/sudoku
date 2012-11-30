@@ -5,8 +5,14 @@ $(document).ready(function() {
     var currentCell;
 
     var successHandler = function(data, textSuccess, jqXHR) {
-        //alert("All done");
         console.log(data);
+        $('.box td').each(function(idx, elem) {
+            var $elem = $(elem);
+            if($elem.text() === " " && data.grid[idx] !== " ") {
+                $elem.text(data.grid[idx]);
+                $elem.css("color", "blue");
+            }
+        });
     }
 
     var errorHandler = function() {
@@ -36,8 +42,10 @@ $(document).ready(function() {
 
     $('.box td').click(function(e) {
         e.preventDefault();
+        if (currentCell != null) {
+            currentCell.css("background-color", "white");
+        }
         currentCell = $(this);
-        $('.box td').css("background-color", "white");
         currentCell.css("background-color", "#FAF0E6");
         $('#input-pad').show();
     });
@@ -46,7 +54,7 @@ $(document).ready(function() {
         e.preventDefault();
         var digit = $(this).text();
         if (digit != "Cancel") {
-            currentCell.text(digit == "Clear" ? " " : digit);
+            currentCell.text(digit === "Clear" ? " " : digit);
         }
         currentCell.css("background-color", "white");
         $('#input-pad').delay(250).fadeOut();
