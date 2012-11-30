@@ -14,19 +14,19 @@ object Grid {
 
   def apply(data: List[String]): Grid = {
     data match {
-      case name :: cells => createGrid(name, cells.mkString)
+      case name :: cells => apply(name, cells.mkString)
       case _ => throw new IllegalArgumentException("Unexpected data format")
     }
   }
 
-  private def createGrid(name: String, cells: String): Grid = {
+  def apply(name: String, cells: String): Grid = {
     require(cells.length == 81, "Invalid number of cells: " + cells.length)
     new Grid(name, cells.map(createChoices).toIndexedSeq)
   }
 
   private def createChoices(c: Char): Choices = {
     val i = c.toInt - 48
-    if (i == 0) 1 to 9 toSet
+    if (i == 0 || !c.isDigit) 1 to 9 toSet
     else Set(i)
   }
 
