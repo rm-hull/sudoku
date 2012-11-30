@@ -26,32 +26,23 @@ object Converter {
    * And slices them so that they are represented in rows, so if passed
    * a string "ABCDEFGHIJKLMNOPQRSTUVWXYZ...", would return a string of
    * the same length but as: "ABCJKLSTUDEFMNOVWXGHIPQRYZA..."
+   *
+   * Note this operation is fully commutative, in as much as it is
+   * possible that if rows are presented, they will be transformed into
+   * boxes.
    */
-  def box2linear(box: String): String = {
-    require(box.size == 81, "Box size was " + box.size + " [" + box + "]")
-    val partitions = box.sliding(27,27).toList
+  def transform(cells: String): String = {
+    require(cells.size == 81, "cells size was " + cells.size + " [" + cells + "]")
+    val partitions = cells.grouped(27).toIndexedSeq
     val rows = for {
-      i <- 0 to 2
       j <- 0 to 2
+      i <- 0 to 2
     } yield partitions(j)
-              .sliding(3,3)
+              .grouped(3)
               .drop(i)
               .sliding(1,3)
               .flatten
               .reduce(_ + _)
     rows.mkString
-  }
-
-  /**
-   * Reforms a linear representation of a grid, into a box.
-   * It is true that:
-   *
-   *      linear2box(box2linear(x)) == x
-   *
-   * Implementation-wise this method is repeated application of box2linear.
-   */
-  def linear2box(linear: String): String = {
-    require(linear.size == 81, "Linear size was " + linear.size + " [" + linear + "]")
-    box2linear(box2linear(linear))
   }
 }
