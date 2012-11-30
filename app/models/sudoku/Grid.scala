@@ -12,7 +12,7 @@ object Grid {
   def apply(filename: String): Grid =
     apply(fromFile(filename).getLines.toList)
 
-  def apply(data: List[String]): Grid = {
+  def apply(data: Seq[String]): Grid = {
     data match {
       case name :: cells => apply(name, cells.mkString)
       case _ => throw new IllegalArgumentException("Unexpected data format")
@@ -87,5 +87,8 @@ class Grid(val name: String, val cells: IndexedSeq[Choices], val iteration: Int 
 
   def updated(newCells: IndexedSeq[Choices]): Grid =
     new Grid(name, newCells, iteration + 1)
+
+  def flatten(unsolved: String = "0"): String =
+    cells.map(x => if (x.size == 1) x.head else unsolved).mkString
 }
 
