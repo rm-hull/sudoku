@@ -1,7 +1,5 @@
 $(document).ready(function() {
 
-    $('#spinner').hide();
-    
     var currentCell;
 
     var successHandler = function(data, textSuccess, jqXHR) {
@@ -25,7 +23,7 @@ $(document).ready(function() {
         $.getJSON(
             "solve", 
             {
-                name: "Dave", 
+                name: "TODO", 
                 grid: $('.box td').text() 
             }
         ).done(successHandler)
