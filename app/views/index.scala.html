@@ -1,12 +1,12 @@
-@(message: String)
+@(template: String)
 
-@box(grid: Seq[Int] = List(0,0,0,0,0,0,0,0,0)) = {
+@box(grid: String) = {
     <div class="box">
         <table>
-            @for(rows <- grid.sliding(3,3)) {
+            @for(rows <- grid.grouped(3)) {
             <tr>
                 @for(cell <- rows) {
-                <td>@(if (cell == 0) " " else cell.toString)</td>
+                <td ontouchstart="">@cell</td>
                 }
             </tr>
             }
@@ -66,21 +66,13 @@
             @spinner("container grey")
             <div>
                 <table>
+                    @for(row <- template.grouped(27)) {
                     <tr>
-                        <td>@box()</td>
-                        <td>@box()</td>
-                        <td>@box()</td>
+                        @for(cells <- row.grouped(9)) {
+                        <td>@box(cells)</td>
+                        }
                     </tr>
-                    <tr>
-                        <td>@box()</td>
-                        <td>@box()</td>
-                        <td>@box()</td>
-                    </tr>
-                    <tr>
-                        <td>@box()</td>
-                        <td>@box()</td>
-                        <td>@box()</td>
-                    </tr>
+                    }
                 </table>
             </div>
             
