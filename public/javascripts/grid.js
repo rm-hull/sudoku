@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    var isIPad = navigator.userAgent.match(/iPad/i) != null;
     var currentCell;
 
     var successHandler = function(data, textSuccess, jqXHR) {
@@ -7,8 +8,7 @@ $(document).ready(function() {
         $('.box td').each(function(idx, elem) {
             var $elem = $(elem);
             if($elem.text() === " " && data.grid[idx] !== " ") {
-                $elem.text(data.grid[idx]);
-                $elem.css("color", "blue");
+                $elem.text(data.grid[idx]).css("color", "blue");
             }
         });
     }
@@ -34,7 +34,15 @@ $(document).ready(function() {
     $('#clear-button').click(function(e) {
         e.preventDefault();
         $('.box td').each(function(idx, elem) {
-            $(elem).text(" ");
+            $(elem).text(" ").css("color", "");
+        });
+    });
+
+    $('#reset-button').click(function(e) {
+        e.preventDefault();
+        $('.box td').each(function(idx, elem) {
+            var $elem = $(elem)
+            $elem.text($elem.data("initial")).css("color", "");
         });
     });
 
@@ -44,8 +52,12 @@ $(document).ready(function() {
             currentCell.css("background-color", "white");
         }
         currentCell = $(this);
-        currentCell.css("background-color", "#FAF0E6");
-        $('#input-pad').show();
+        currentCell.css({"background-color": "#FAF0E6", "color": ""});
+        if (isIPad) {
+            $('#input-pad').show();
+        } else {
+            $('#input-pad').fadeIn();
+        }
     });
 
     $('#input-pad td,#input-pad th').click(function(e) {
@@ -55,7 +67,11 @@ $(document).ready(function() {
             currentCell.text(digit === "Clear" ? " " : digit);
         }
         currentCell.css("background-color", "white");
-        $('#input-pad').delay(250).fadeOut();
+        if (isIPad) {
+            $('#input-pad').delay(250).hide();
+        } else {
+            $('#input-pad').delay(250).fadeOut();
+        }
     });
 
 });

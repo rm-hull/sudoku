@@ -6,7 +6,7 @@
             @for(rows <- grid.grouped(3)) {
             <tr>
                 @for(cell <- rows) {
-                <td ontouchstart="">@cell</td>
+                <td ontouchstart="" data-initial="@cell">@cell</td>
                 }
             </tr>
             }
@@ -75,11 +75,12 @@
                     }
                 </table>
             </div>
-            
           
             <div class="control-strip">
                 <input id="solve-button" type="submit" value="Solve"/>
                 <input id="clear-button" type="submit" value="Clear"/>
+                <input id="reset-button" type="submit" value="Reset"/>
+                <input id="new-button" type="submit" value="New"/>
             </div>
         </div>
     </div>
