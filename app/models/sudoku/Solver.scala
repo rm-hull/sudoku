@@ -32,7 +32,7 @@ object SimpleSolver extends Solver {
   }
 
   private def freq(coll: Seq[Choices]): Map[Int, Int] =
-    coll.foldLeft(List.empty[Int]) { _ ++ _ }
+    coll.flatten
         .groupBy { x => x }
         .map { case (k,v) => (k, v.size) }
         .toMap
