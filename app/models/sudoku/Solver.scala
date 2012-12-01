@@ -4,8 +4,6 @@ import Grid._
 
 trait Solver {
   def solve(grid: Grid): Grid
-
-  def ??? = throw new Error("NYI")
 }
 
 /**
@@ -34,7 +32,7 @@ object SimpleSolver extends Solver {
   }
 
   private def freq(coll: Seq[Choices]): Map[Int, Int] =
-    coll.reduce { _ ++ _ }
+    coll.foldLeft(List.empty[Int]) { _ ++ _ }
         .groupBy { x => x }
         .map { case (k,v) => (k, v.size) }
         .toMap
@@ -60,8 +58,8 @@ object SimpleSolver extends Solver {
 
   private def reducer(f: (Grid, Int, Int) => Choices)(grid: Grid): Grid = {
     val cells = for {
-      y <- Range.inclusive(0, 8)
-      x <- Range.inclusive(0, 8)
+      y <- 0 to 8
+      x <- 0 to 8
     } yield {
       val curr = grid.cell(x, y)
       if (curr.size == 1) curr
@@ -83,7 +81,7 @@ object SimpleSolver extends Solver {
       if (prev.cells == curr.cells || curr.isSolved) curr
       else iter(curr, f(curr))
     }
-    iter(Grid.empty, grid)
+    iter(Grid.empty, f(grid))
   }
 }
 
