@@ -54,11 +54,7 @@ class Grid(val name: String, val cells: IndexedSeq[Choices], val iteration: Int 
 
   def box(x: Int, y: Int): IndexedSeq[Choices] = {
     def norm(a: Int): Int = 3 * (a / 3)
-    Range
-      .inclusive(0, 2)
-      .map(i => offset(norm(x), norm(y) + i))
-      .map(i => slice(i, 3))
-      .reduce(_ ++ _)
+    0 to 2 map(i => slice(offset(norm(x), norm(y) + i), 3)) reduce(_ ++ _)
   }
 
   def box(offset: Int): IndexedSeq[Choices] =
@@ -66,7 +62,7 @@ class Grid(val name: String, val cells: IndexedSeq[Choices], val iteration: Int 
 
   lazy val isSolved: Boolean = {
     cells.forall(cell => cell.size == 1) &&
-    Range.inclusive(0, 8).forall { i =>
+    (0 to 8).forall { i =>
       isComplete(row(i)) &&
       isComplete(column(i)) &&
       isComplete(box(i))
