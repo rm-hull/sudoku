@@ -20,7 +20,7 @@ object Application extends Controller {
   }
 
   def solve(name: String, grid: String) = Action {
-    val result = SimpleSolver.solve(
+    val result = CombinationSolver.solve(
                    Grid(
                      name,
                      Converter.transform(grid)))
