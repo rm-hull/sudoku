@@ -8,25 +8,22 @@ $(document).ready(function() {
         $('.box td').each(function(idx, elem) {
             var $elem = $(elem);
             if($elem.text() === " " && data.grid[idx] !== " ") {
-                $elem.text(data.grid[idx]).css("color", "blue");
+                $elem.text(data.grid[idx]).css("color", "#80C846");
             }
         });
     }
 
-    var errorHandler = function() {
-        alert("Error");
+    var errorHandler = function(e) {
+        var response = $.parseJSON(e.responseText);
+        console.log(response);
+        alert(response.message);
     }
 
     $('#solve-button').click(function(e) {
         e.preventDefault();
         $('#spinner').show();
-        $.getJSON(
-            "solve", 
-            {
-                name: "TODO", 
-                grid: $('.box td').text() 
-            }
-        ).done(successHandler)
+        $.getJSON( "/solve", { cells: $('.box td').text() })
+         .done(successHandler)
          .fail(errorHandler)
          .always(function() { $('#spinner').hide(); });
     });
