@@ -7,7 +7,7 @@ object Grid {
 
   type Choices = Set[Int]
 
-  val empty = new Grid("Empty", Vector.empty)
+  val empty = Grid("Empty", "0" * 81)
 
   def apply(filename: String): Grid =
     apply(fromFile(filename).getLines.toList)
@@ -32,10 +32,13 @@ object Grid {
 
   private def offset(x: Int, y: Int): Int = x + (y * 9)
 
-  private def isComplete(cells: IndexedSeq[Choices]): Boolean = {
+  private def isComplete(cells: Seq[Choices]): Boolean = {
     val merged = cells.flatten.distinct
     merged.sum == 45 && merged.product == 362880
   }
+
+  private def isValid(cells: Seq[Choices]): Boolean =
+    cells.filter(cell => cell.size == 1).flatten.groupBy(x => x).forall { case (k, v) => v.size == 1 }
 }
 
 class Grid(val name: String, val cells: IndexedSeq[Choices], val iteration: Int = 0) {
@@ -45,12 +48,12 @@ class Grid(val name: String, val cells: IndexedSeq[Choices], val iteration: Int 
   def cell(x: Int, y: Int): Choices = cell(offset(x, y))
 
   def slice(offset: Int, size: Int): IndexedSeq[Choices] =
-    cells.slice(offset, offset + size)
+    cells slice(offset, offset + size)
 
   def row(y: Int): IndexedSeq[Choices] = slice(offset(0, y), 9)
 
   def column(x: Int): IndexedSeq[Choices] =
-    cells.drop(x).sliding(1, 9).map(_(0)).toIndexedSeq
+    cells drop(x) sliding(1, 9) map(_(0)) toIndexedSeq
 
   def box(x: Int, y: Int): IndexedSeq[Choices] = {
     def norm(a: Int): Int = 3 * (a / 3)
@@ -69,8 +72,17 @@ class Grid(val name: String, val cells: IndexedSeq[Choices], val iteration: Int 
     }
   }
 
+  lazy val isLegal: Boolean = {
+    (0 to 8).forall { i =>
+      isValid(row(i)) &&
+      isValid(column(i)) &&
+      isValid(box(i))
+    }
+  }
+
   override def toString =
     name +
+    ", legal: " + isLegal +
     ", solved: " + isSolved +
     ", iteration: " + iteration +
     ", cells: " + cells
