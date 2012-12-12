@@ -106,7 +106,7 @@ object WhatIfSolver extends Solver {
    * as a stream. It is up to the consumer of the stream to terminate
    * iterating over the sequence on receipt of a completed solution.
    */
-   private def from(initial: Stream[Grid]): Stream[Grid] = initial match {
+  private def from(initial: Stream[Grid]): Stream[Grid] = initial match {
     case Stream() => Stream.empty
     case x #:: xs => x #:: from(nextGenerations(x).toStream append xs)
   }
