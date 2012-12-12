@@ -42,10 +42,21 @@ object Application extends Controller {
             "message" -> "Invalid grid data")))
   }
 
-  lazy val templateGrids: IndexedSeq[Grid] =
-    Source.fromFile("app/assets/resources/sudoku.txt")
+  def localGrids(fname: String): IndexedSeq[Grid] =
+    Source.fromFile(fname)
           .getLines
           .grouped(10)
           .map(data => Grid(data))
           .toIndexedSeq
+
+  def remoteGrids(url: String): IndexedSeq[Grid] =
+    Source.fromURL(url)
+          .getLines
+          .zipWithIndex
+          .map { case(data, index) => Grid("Grid:" + index, data) }
+          .toIndexedSeq
+
+  lazy val templateGrids: IndexedSeq[Grid] =
+    localGrids("app/assets/resources/sudoku.txt") ++
+    remoteGrids("http://school.maths.uwa.edu.au/~gordon/sudoku17")
 }
