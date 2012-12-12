@@ -13,16 +13,15 @@ import sudoku.Converter._
 object Application extends Controller {
 
   def index = Action {
-    grid((templateGrids.size * math.random).toInt)
+    grid((templateData.size * math.random).toInt)
   }
 
   def grid(idx: Int) = Action {
-    val grid = templateGrids.lift(idx).getOrElse(Grid.empty)
+    val grid = templateData.lift(idx)
+                           .map(x => Grid("Grid:" + idx, x))
+                           .getOrElse(Grid.empty)
 
-    Ok(
-      views.html.index(
-        Converter.transform(
-          grid.flatten(" ").mkString)))
+    Ok(views.html.index(transform(grid.flatten(" ").mkString)))
   }
 
   def solve(cells: String) = Action {
@@ -42,21 +41,19 @@ object Application extends Controller {
             "message" -> "Invalid grid data")))
   }
 
-  def localGrids(fname: String): IndexedSeq[Grid] =
+  def localData(fname: String): IndexedSeq[String] =
     Source.fromFile(fname)
           .getLines
           .grouped(10)
-          .map(data => Grid(data))
+          .map(data => data.tail.mkString)
           .toIndexedSeq
 
-  def remoteGrids(url: String): IndexedSeq[Grid] =
+  def remoteData(url: String): IndexedSeq[String] =
     Source.fromURL(url)
           .getLines
-          .zipWithIndex
-          .map { case(data, index) => Grid("Grid:" + index, data) }
           .toIndexedSeq
 
-  lazy val templateGrids: IndexedSeq[Grid] =
-    localGrids("app/assets/resources/sudoku.txt") ++
-    remoteGrids("http://school.maths.uwa.edu.au/~gordon/sudoku17")
+  lazy val templateData: IndexedSeq[String] =
+    localData("app/assets/resources/sudoku.txt") ++
+    remoteData("http://school.maths.uwa.edu.au/~gordon/sudoku17")
 }

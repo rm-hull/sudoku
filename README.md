@@ -40,3 +40,6 @@ grid, according to http://www.afjarvis.staff.shef.ac.uk/sudoku/sudoku.pdf
 49151 grids dynamically sourced from http://school.maths.uwa.edu.au/~gordon/sudokumin.php,
 randomly displayed whenever the page is reloaded, alternatively, go to 
 http://sudoku.destructuring-bind.org/grid/XXXX to load a specific grid.
+
+http://sudoku.destructuring-bind.org/grid/52 is reputed to be the hardest 
+Sudoku in the world [http://www.telegraph.co.uk/science/science-news/9359579/Worlds-hardest-sudoku-can-you-crack-it.html]
