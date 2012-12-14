@@ -35,35 +35,35 @@
 <section id="main">
     <div class="wrapper">
  
+        <div id="grid_number">#@index</div>
         <div id="grid">
-        <div id="input-pad">
-            <table>
-                <tr>
-                    <th colspan="3" ontouchstart="">Cancel</th>
-                </tr>
-                <tr>
-                    <td ontouchstart="">7</td>
-                    <td ontouchstart="">8</td>
-                    <td ontouchstart="">9</td>
-                </tr>
-                <tr>
-                    <td ontouchstart="">4</td>
-                    <td ontouchstart="">5</td>
-                    <td ontouchstart="">6</td>
-                </tr>
-                <tr>
-                    <td ontouchstart="">1</td>
-                    <td ontouchstart="">2</td>
-                    <td ontouchstart="">3</td>
-                </tr>
-                <tr>
-                    <td colspan="3" ontouchstart="">Clear</td>
-                </tr>
-            </table>
-        </div>
+            <div id="input-pad">
+                <table>
+                    <tr>
+                        <th colspan="3" ontouchstart="">Cancel</th>
+                    </tr>
+                    <tr>
+                        <td ontouchstart="">7</td>
+                        <td ontouchstart="">8</td>
+                        <td ontouchstart="">9</td>
+                    </tr>
+                    <tr>
+                        <td ontouchstart="">4</td>
+                        <td ontouchstart="">5</td>
+                        <td ontouchstart="">6</td>
+                    </tr>
+                    <tr>
+                        <td ontouchstart="">1</td>
+                        <td ontouchstart="">2</td>
+                        <td ontouchstart="">3</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" ontouchstart="">Clear</td>
+                    </tr>
+                </table>
+            </div>
 
             @spinner("container grey")
-            <div id="grid_number">#@index</div>
             <div>
                 <table>
                     @for(row <- template.grouped(27)) {
