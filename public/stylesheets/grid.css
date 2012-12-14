@@ -15,15 +15,16 @@ div#grid {
 	border-style: solid;
 	border-color: gray;
 	background-color: white;
-  width: 24px;
-  height: 24px;
-  text-align: center;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    cursor: pointer;
 }
 div#input-pad {
-  display: none;
-  float:right;
-  width: 100px;
-  padding: 4px;
+    display: none;
+    float:right;
+    width: 100px;
+    padding: 4px;
 }
 #input-pad table {
 	border-width: 1px;
@@ -34,31 +35,32 @@ div#input-pad {
 	background-color: white;
 }
 #input-pad table th {
-  font-weight: bold;
+    font-weight: bold;
 	border-width: 0px;
 	padding: 8px;
 	border-style: solid;
 	background-color: #FAF0E6;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  text-align: center;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    text-align: center;
 }
 #input-pad table td {
-  font-weight: bold;
+    font-weight: bold;
 	border-width: 2px;
 	padding: 10px;
 	border-style: solid;
 	border-color: white;
 	background-color: gray;
 	color: white;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  text-align: center;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
+    border-radius: 6px;
+    text-align: center;
+    cursor: pointer;
 }
 #input-pad table td:active {
-  color: gray;
-  background-color: black;
-  cursor: pointer;
+    color: gray;
+    background-color: black;
+    cursor: pointer;
 }
