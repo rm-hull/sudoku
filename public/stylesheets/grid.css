@@ -44,6 +44,7 @@ div#input-pad {
     -webkit-border-radius: 6px;
     border-radius: 6px;
     text-align: center;
+    cursor: pointer;
 }
 #input-pad table td {
     font-weight: bold;
