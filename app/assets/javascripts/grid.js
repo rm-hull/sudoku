@@ -43,6 +43,11 @@ $(document).ready(function() {
         });
     });
 
+    $('#new-button').click(function(e) {
+        e.preventDefault();
+        location.href = '/';
+    });
+
     $('.box td').click(function(e) {
         e.preventDefault();
         if (currentCell != null) {
