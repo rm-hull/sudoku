@@ -21,7 +21,7 @@ object Application extends Controller {
                            .map(x => Grid("Grid:" + idx, x))
                            .getOrElse(Grid.empty)
 
-    Ok(views.html.index(transform(grid.flatten(" ").mkString)))
+    Ok(views.html.index(idx, transform(grid.flatten(" ").mkString)))
   }
 
   def solve(cells: String) = Action {

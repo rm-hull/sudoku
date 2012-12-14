@@ -1,4 +1,4 @@
-@(template: String)
+@(index: Int, template: String)
 
 @box(grid: String) = {
     <div class="box">
@@ -34,7 +34,6 @@
 
 <section id="main">
     <div class="wrapper">
-
  
         <div id="grid">
         <div id="input-pad">
@@ -64,6 +63,7 @@
         </div>
 
             @spinner("container grey")
+            <div id="grid_number">#@index</div>
             <div>
                 <table>
                     @for(row <- template.grouped(27)) {

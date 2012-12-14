@@ -64,3 +64,9 @@ div#input-pad {
     background-color: black;
     cursor: pointer;
 }
+div#grid_number {
+    width: 230px;
+    text-align: right;
+    font-size: 10px;
+    color: black;
+}
