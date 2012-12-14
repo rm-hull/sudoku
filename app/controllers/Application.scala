@@ -7,16 +7,16 @@ import play.api.libs.json._
 import play.api.libs.concurrent._
 import play.api.Play.current
 
+import Execution.Implicits.defaultContext
+
 import sudoku._
 import sudoku.Converter._
 
 object Application extends Controller {
 
-  def index = Action {
-    grid((templateData.size * math.random).toInt)
-  }
+  def index = grid((templateData.size * math.random).toInt)
 
-  def grid(idx: Int) = Action {
+  def grid(idx: Int) = Action { request =>
     val grid = templateData.lift(idx)
                            .map(x => Grid("Grid:" + idx, x))
                            .getOrElse(Grid.empty)
