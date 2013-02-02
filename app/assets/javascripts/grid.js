@@ -19,23 +19,30 @@ $(document).ready(function() {
         alert(response.message);
     }
 
-    $('#solve-button').click(function(e) {
+    $('#solve-button').bind('click', function(e) {
         e.preventDefault();
-        $('#spinner').show();
-        $.getJSON( "/solve", { cells: $('.box td').text() })
-         .done(successHandler)
-         .fail(errorHandler)
-         .always(function() { $('#spinner').hide(); });
+        $('input[type=submit]').attr('disabled', true);
+        var spinner = $('#spinner');
+        if (!spinner.is(":visible")) {
+            spinner.show();
+            $.getJSON( "/solve", { cells: $('.box td').text() })
+             .done(successHandler)
+             .fail(errorHandler)
+             .always(function() { 
+                spinner.hide();
+                $('input[type=submit]').attr('disabled', false);
+              });
+        }
     });
 
-    $('#clear-button').click(function(e) {
+    $('#clear-button').bind('click', function(e) {
         e.preventDefault();
         $('.box td').each(function(idx, elem) {
             $(elem).text(" ").css("color", "");
         });
     });
 
-    $('#reset-button').click(function(e) {
+    $('#reset-button').bind('click', function(e) {
         e.preventDefault();
         $('.box td').each(function(idx, elem) {
             var $elem = $(elem)
@@ -43,12 +50,12 @@ $(document).ready(function() {
         });
     });
 
-    $('#new-button').click(function(e) {
+    $('#new-button').bind('click', function(e) {
         e.preventDefault();
         location.href = '/';
     });
 
-    $('.box td').click(function(e) {
+    $('.box td').bind('click', function(e) {
         e.preventDefault();
         if (currentCell != null) {
             currentCell.css("background-color", "white");
@@ -62,7 +69,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#input-pad td,#input-pad th').click(function(e) {
+    $('#input-pad td,#input-pad th').bind('click', function(e) {
         e.preventDefault();
         var digit = $(this).text();
         if (digit != "Cancel") {
