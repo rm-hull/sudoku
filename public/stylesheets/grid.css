@@ -72,3 +72,7 @@ div#grid_number {
     font-size: 10px;
     color: black;
 }
+
+td.selected {
+    background-color: #FAF0E6!important;
+}

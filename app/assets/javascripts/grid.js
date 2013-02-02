@@ -19,6 +19,38 @@ $(document).ready(function() {
         alert(response.message);
     }
 
+    $('body').bind('keyup', function(e) {
+        e.preventDefault();
+        if (currentCell != null) {
+            switch (e.keyCode) {
+                case 8:  // Backspace
+                case 32: // Space
+                case 46: // Delete
+                    currentCell.text(" ");
+                    break;
+            }
+
+            /* TODO - use arrows & tab to traverse grid
+            if (e.keyCode === 9) { // --> ASCII tab
+                if (currentCell != null) {
+                    currentCell.removeClass("selected");
+                    currentCell = currentCell.next("td");
+                    currentCell.addClass("selected");
+                }
+            } */
+        }
+    });
+
+    $('body').bind('keypress', function(e) {
+        e.preventDefault();
+        var i = e.charCode - 48; // --> ASCII zero
+        if (i >= 1 && i <= 9) {
+            if (currentCell != null) {
+                currentCell.text(i);
+            }
+        }
+    });
+
     $('#solve-button').bind('click', function(e) {
         e.preventDefault();
         $('input[type=submit]').attr('disabled', true);
@@ -58,10 +90,10 @@ $(document).ready(function() {
     $('.box td').bind('click', function(e) {
         e.preventDefault();
         if (currentCell != null) {
-            currentCell.css("background-color", "white");
+            currentCell.removeClass("selected");
         }
         currentCell = $(this);
-        currentCell.css({"background-color": "#FAF0E6", "color": ""});
+        currentCell.addClass("selected").css("color", "");
         if (isIPad) {
             $('#input-pad').show();
         } else {
@@ -75,7 +107,6 @@ $(document).ready(function() {
         if (digit != "Cancel") {
             currentCell.text(digit === "Clear" ? " " : digit);
         }
-        currentCell.css("background-color", "white");
         if (isIPad) {
             $('#input-pad').delay(250).hide();
         } else {
